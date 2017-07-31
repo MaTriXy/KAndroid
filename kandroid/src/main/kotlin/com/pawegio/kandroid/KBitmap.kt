@@ -1,5 +1,5 @@
 /*
- * Copyright 2015-2016 Paweł Gajda
+ * Copyright 2015-2017 Paweł Gajda
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,4 +14,24 @@
  * limitations under the License.
  */
 
-include ':kandroid'
+package com.pawegio.kandroid
+
+import android.graphics.Bitmap
+
+inline fun <T : Bitmap?, R> T.use(block: (T) -> R): R {
+    var recycled = false
+    try {
+        return block(this)
+    } catch (e: Exception) {
+        recycled = true
+        try {
+            this?.recycle()
+        } catch (exception: Exception) {
+        }
+        throw e
+    } finally {
+        if (!recycled) {
+            this?.recycle()
+        }
+    }
+}
