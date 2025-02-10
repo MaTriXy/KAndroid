@@ -3,19 +3,21 @@
 # KAndroid
 <img src="art/logo.png" width="160px">
 
-Kotlin library for Android providing useful extensions to eliminate boilerplate code in Android SDK and focus on productivity. Library is compatible with **Kotlin 1.1.51** build.
+Kotlin library for Android providing useful extensions to eliminate boilerplate code in Android SDK and focus on productivity.
 
 Download
 --------
 
 Download latest version with Gradle:
 ```groovy
-repositories {
-    jcenter()
+allprojects { 
+    repositories {
+        maven { url "https://jitpack.io" }
+    }
 }
 
 dependencies {
-    compile 'com.pawegio.kandroid:kandroid:0.8.5@aar'
+    implementation 'com.github.pawegio:KAndroid:0.8.7@aar'
 }
 ```
 
